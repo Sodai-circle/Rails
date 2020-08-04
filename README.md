@@ -52,7 +52,7 @@
   bundle install
   ```
 
-- database.ymlに記述
+- database.ymlを以下で上書き
 
   ```yml:database.yml
   default: &default
