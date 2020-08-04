@@ -10,7 +10,7 @@
 1. リポジトリをクローン
    
    ```
-   git clone https://github.com/takassh23/RailDock.git rails_app/docker
+   git clone https://gitlab.com/welcome-to-sodai/rails.git rails_app/raildock
    ```
    
 2. .envをコピー
