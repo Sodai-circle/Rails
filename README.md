@@ -1,76 +1,35 @@
-# RailDock
+# Rails環境構築
+
+- Rails6 + Nginx + Puma + Mysql の環境です
+- dockerを使ったrailsの環境構築なのでraildockと名付けています。
+
+
+
+## RailDock
 
 1. リポジトリをクローン
    
    ```
-git clone  rails_app
+   git clone https://github.com/takassh23/RailDock.git rails_app/docker
    ```
    
-2. raildock階層で
+2. .envをコピー
+   ```
+   cp env-example .env
+   ```
+   必要に応じて編集する
+   
+3. raildock階層で
 
    ```
    docker-compose build workspace nginx mysql
    ```
 
-3. コンテナを構築、起動
+4. コンテナを構築、起動
 
    ```
    docker-compose up workspace nginx mysql
    ```
-
-   ```
-   gem 'dotenv-rails'
-   ```
-
-4. Databese.ymlの編集
-
-   testはコメントアウトした方がいいかも
-
-   ```
-   default: &default
-     adapter: mysql2
-     encoding: utf8
-     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-     username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-     password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
-     host: <%= ENV.fetch('MYSQL_HOST') { 'db' } %>
-   
-   development:
-     <<: *default
-     database: default
-   
-   #test:
-   #  <<: *default
-   #  database: webapp_test
-   ```
-
-5. .envに追加
-
-   ```
-   MYSQL_HOST=mysql
-   MYSQL_USER=default
-   MYSQL_PASSWORD=secret
-   ```
-
-   database作成
-
-6. ```
-   rails g scaffold User name:string email:string
-   rails db:migrate
-   ```
-
-   usersにアクセスする
-
-7. ```
-   rails db:create
-   ```
-
-8. 終わるとき
-
-   ```
-   docker-compose down
-   ```
-
 
 
 ## 環境変数とデータベースの設定
@@ -121,12 +80,19 @@ git clone  rails_app
   MYSQL_PASSWORD=secret
   ```
 
+- 一度コンテナを再起動
+
+  ```
+  docker-compose down
+  docker-compose up workspace nginx mysql
+  ```
+
 - コンテナ内で
 
   ```
+  rails db:create
   rails g scaffold User name:string email:string
   rails db:migrate
-  rails db:create
   ```
 
 - [ここに](http:/localhost)アクセスし、起動しているか確認
@@ -151,4 +117,22 @@ git clone  rails_app
   docker-compose down
   ```
 
-  
+
+
+
+### まとめ
+
+- Railsの環境構築ができた
+
+
+
+### Next Step
+
+- Railsを勉強していくのみ!
+
+- [Railsチュートリアル](https://railstutorial.jp/chapters/beginning?version=5.1)
+
+- Sodai.でチュートリアル作ってくれる方募集中です...
+
+   
+
