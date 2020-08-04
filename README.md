@@ -13,13 +13,13 @@
    git clone https://gitlab.com/welcome-to-sodai/rails.git rails_app/raildock
    ```
    
-2. .envをコピー
+2. raildock階層で
    ```
    cp env-example .env
    ```
    必要に応じて編集する
    
-3. raildock階層で
+3. 同じくraildock階層で
 
    ```
    docker-compose build workspace nginx mysql
@@ -34,7 +34,7 @@
 
 ## 環境変数とデータベースの設定
 
-- Gemfileに
+- srcにあるGemfileに追加
 
   ```Gemfile:Gemfile
   gem 'dotenv-rails'
