@@ -30,6 +30,24 @@
    ```
    docker-compose up workspace nginx mysql
    ```
+   
+      初回はかなり時間かかる場合があるのと、終わっても終わったかわかりにくいところが難点です。
+   
+      必ず電波の環境が良いところで行ってください。永遠に終わりません。
+   
+      目安としては最悪でも30分で終わると思います。
+   
+   - `workspace_1  | Installing nokogiri 1.10.10 with native extensions`
+   
+   - `workspace_1  | Installing sassc 2.4.0 with native extensions`
+   
+     
+   
+      この2つがかなり時間かかります。
+   
+      終わったときは、`Listening on tcp://0.0.0.0:3000`
+   
+   これが下から2行目くらいに出てると思います。根気よく待ちましょう。
 
 
 ## 環境変数とデータベースの設定
@@ -42,6 +60,8 @@
 
 - raildock階層で
 
+  ※人によりけりですが、`docker-compose up workspace nginx mysql`これを上で実行した後、すぐにここに来ている場合は、コマンドラインが占拠されているはずですので、新規のコマンドラインウィンドウを立ち上げてからこのコマンドを打ってください。
+
   ```bash
   docker-compose exec workspace bash
   ```
@@ -52,7 +72,7 @@
   bundle install
   ```
 
-- database.ymlを以下で上書き
+- src/config/database.ymlを以下で上書き
 
   ```yml:database.yml
   default: &default
@@ -72,7 +92,7 @@
   #   database: webapp_test
   ```
 
-- src配下(Gemfileなどと同じ階層)に.envを追加し記述
+- src/.envを追加し記述
 
   ```txt:.env
   MYSQL_HOST=mysql
@@ -82,10 +102,16 @@
 
 - 一度コンテナを再起動
 
+  - コンテナから抜け出す
+  - コンテナをストップさせる
+  - 以下のコマンドを打つ
+
   ```
   docker-compose down
   docker-compose up workspace nginx mysql
   ```
+
+  ※少し時間かかるので気長に待つ
 
 - コンテナ内で
 
@@ -99,28 +125,32 @@
 
 - [ここに](http:/localhost/users)アクセスし、データベースが動いているか確認
 
-
+  - 適当にユーザーとか作って、作れていればOK
+  - dockerを再起動してもユーザーは残っているはずです
 
 ## 使い方
 
-- 始めるとき raildockの階層で
+### 始めるとき 
 
-  ```
-  docker-compose up -d workspace nginx mysql
-  ```
+raildockの階層で
 
-  意外と時間かかるのですぐにアクセスしてもダメな時がある。
+```
+docker-compose up -d workspace nginx mysql
+```
 
-- 終わるとき
-
-  ```
-  docker-compose down
-  ```
+※少し時間かかるのですぐにアクセスしてもダメな時がある。(初回起動よりは全然早いです。ただこのrails立ち上げ遅い問題なんとか解決したいです。アプリケーションサーバを介するから仕方ないのかな。)
 
 
 
+### 終わるとき
 
-### まとめ
+```
+docker-compose down
+```
+
+
+
+## まとめ
 
 - Railsの環境構築ができた
 
