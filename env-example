@@ -1,5 +1,7 @@
 ### 全体の設定 ##############################################
 
+APP_NAME=YOUR_RAILDOCK_APP
+
 APP_CODE_PATH_HOST=../src
 APP_CODE_PATH_CONTAINER=/var/www
 APP_CODE_CONTAINER_FLAG=:cached
