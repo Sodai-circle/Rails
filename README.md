@@ -1,16 +1,13 @@
 # Rails環境構築
 
 - Rails6 + Nginx + Puma + Mysql の環境です
-- dockerを使ったrailsの環境構築なのでraildockと名付けています。
-
-
 
 ## RailDock
 
 1. リポジトリをクローン
    
    ```
-   git clone https://gitlab.com/welcome-to-sodai/rails.git rails_app/raildock
+   git clone https://github.com/Sodai-circle/Rails.git rails_app/raildock
    ```
    
 2. raildock階層で
@@ -147,22 +144,6 @@ docker-compose up -d workspace nginx mysql
 ```
 docker-compose down
 ```
-
-
-
-## まとめ
-
-- Railsの環境構築ができた
-
-
-
-### Next Step
-
-- Railsを勉強していくのみ!
-
-- [Railsチュートリアル](https://railstutorial.jp/chapters/beginning?version=5.1)
-
-- Sodai.でチュートリアル作ってくれる方募集中です...
 
    
 
